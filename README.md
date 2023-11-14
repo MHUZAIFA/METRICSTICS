@@ -54,7 +54,7 @@ Let x be a random variable that can take values from a finite data set x1, x2, x
 ## Screenshots
 
 ![Screenshot 1](screenshots/metricstics_gui_keyboard.png)
-*METRICSTICS GUI - Keyboard*
+*METRICSTICS GUI*
 
 ## Getting Started
 
