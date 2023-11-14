@@ -1,0 +1,9 @@
+# your_project_root/model/__init__.py
+from model.metrics_calculator import MetricsCalculator
+from model.session_manager import SessionManager
+from model.session_info_parser import SessionInfoParser
+from model.metrics_calculator_interface import MetricsCalculatorInterface
+from model.session_manager_interface import SessionManagerInterface
+from model.session_info_parser_interface import SessionInfoParserInterface
+
+print("Initializing model package")

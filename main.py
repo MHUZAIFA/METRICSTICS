@@ -1,16 +1,19 @@
 # main.py
-from model.model import MyAppModel
-from view.view import MyAppView
-from controller.controller import MyAppController
+import model
+import controller
+import view
 
 if __name__ == "__main__":
     # Create instances of Model, View, and Controller
-    model = MyAppModel()
-    view = MyAppView(controller=MyAppController(model, None))
-    view.title("Tkinter MVC App")
+    # model
+    model_session_manager = model.SessionManager(sessions_folder="sessions", session_file_name='session_info.json')
+    model_metrics_calculator = model.MetricsCalculator()
 
-    # Connect the View to the Controller
-    view.controller.view = view
+    #controller
+    main_controller = controller.MainController(model_metrics_calculator, model_session_manager)
+
+    # view
+    view = view.MetricsticsGUI(controller=main_controller)
 
     # Start the Tkinter main loop
-    view.mainloop()
+    view.run()
