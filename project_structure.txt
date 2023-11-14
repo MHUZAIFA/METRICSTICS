@@ -1,0 +1,39 @@
+--- Folder Structure ---
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE
+requirements.txt
+project_structure.txt
+main.py
+init.py
+[controller]
+├── init.py
+├── main_controller.py
+└── main_controller_interface.py
+[icons]
+├── ai.png
+├── close.png
+├── file.png
+├── icon.ico
+└── keyboard.png
+[mock]
+├── invalid_user_input.txt
+├── session_info.json
+└── valid_user_input.txt
+[model]
+├── init.py
+├── metrics_calculator.py
+├── metrics_calculator_interface.py
+├── session_info_parser.py
+├── session_info_parser_interface.py
+├── session_manager.py
+└── session_manager_interface.py
+[screenshots]
+└── project screenshots for readme file
+[sessions]
+├── [datasets]
+└── location to save dataset assocoated to a saved session
+└── session_info.json # to save session metadata
+[view]
+├── init.py
+└── metricstics_GUI.py
