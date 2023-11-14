@@ -56,16 +56,6 @@ Let x be a random variable that can take values from a finite data set x1, x2, x
 ![Screenshot 1](screenshots/metricstics_gui_keyboard.png)
 *METRICSTICS GUI - Keyboard*
 
-
-
-![Screenshot 2](screenshots/metricstics_gui_file.png)
-*METRICSTICS GUI - File upload*
-
-
-
-![Screenshot 3](screenshots/metricstics_gui_auto.png)
-*METRICSTICS GUI - Auto (Randomizer)*
-
 ## Getting Started
 
 ### Prerequisites
