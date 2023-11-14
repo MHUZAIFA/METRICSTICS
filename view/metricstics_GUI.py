@@ -124,8 +124,15 @@ class InfoCard:
         self.row_frame.grid(row=row, column=column, padx=10)
 
     def update_number(self, new_number):
-        self.number = "{:.2f}".format(new_number)
+        if new_number % 1 == 0:
+            # If the new number is an integer, display it without decimal places
+            self.number = str(int(new_number))
+        else:
+            # If the new number has a decimal part, display it with two decimal places
+            self.number = "{:.2f}".format(new_number)
+
         self.number_label.config(text=str(self.number))
+
 
 
 class IconButton:

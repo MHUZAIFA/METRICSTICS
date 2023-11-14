@@ -1,6 +1,6 @@
 # Interface
 from abc import ABC, abstractmethod
-from typing import List, Optional, Union, Callable, Dict, Any
+from typing import List, Optional, Union, Dict, Any
 
 from model.session_info_parser_interface import SessionInfoParserInterface
 
