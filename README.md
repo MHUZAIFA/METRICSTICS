@@ -1,7 +1,5 @@
 # METRICSTICS: Your Statistical Calculator 📊
 
-![visitors](https://visitor-badge.glitch.me/badge?page_id=your-username.metricstics)
-
 Welcome to METRICSTICS, a Python-based statistical calculator with a sleek Tkinter GUI. METRICSTICS not only computes standard statistical measures but also provides an intuitive interface for loading and storing session information. It features a beautiful dark theme, ensuring a pleasant user experience.
 
 
@@ -20,7 +18,7 @@ Welcome to METRICSTICS, a Python-based statistical calculator with a sleek Tkint
 
 ## Introduction
 
-Metristics helps in calculating descriptive statistics.
+METRICSTICS helps in calculating descriptive statistics.
 
 The purpose of descriptive statistics is to quantitatively describe a collection of data by measures of central tendency, measures of frequency, and measures of variability.
 
@@ -88,7 +86,9 @@ pip install -r requirements.txt
 
 ## Usage
 Run the following command to start METRICSTICS:
+```bash
 python main.py
+```
 
 ## Contributors
 
@@ -108,7 +108,7 @@ We welcome contributions! If you would like to contribute to METRICSTICS, please
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](LICENSE). See the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
