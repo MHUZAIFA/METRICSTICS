@@ -701,7 +701,7 @@ class MetricsticsGUI:
                                     self.text_input.insert(tk.END, ", ".join(map(str, numbers)))
                                     keyboard_button.select()
                                     selected_input_text.config(text="Session loaded")
-                                    selected_input_subtext.config(text=f"Name: {name} | Date: {timestamp} ")
+                                    selected_input_subtext.config(text=f"Name: {name} | Date: {format_timestamp(timestamp)} ")
                                     
 
                             except ValueError:
