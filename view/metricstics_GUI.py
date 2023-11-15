@@ -13,6 +13,7 @@ import controller
 import re
 from tkinter import PhotoImage
 from tkinter import messagebox
+from controller.main_controller_interface import ResultsNotAvailableError
 
 primaryBgColor = '#171717'
 primaryBtnBgColor = '#272727'
@@ -418,7 +419,11 @@ class MetricsticsGUI:
             name = self.sessionName.get()
             print(f"Entered Name: {name}")
             if name:
-                self.controller.save_session(name=name)
+                try:
+                    self.controller.save_session(name=name)
+                except ResultsNotAvailableError as e:
+                    print(f"Error: {e}")
+                    messagebox.showinfo("Alert", e)
             popup.destroy()  # Close the popup after getting the name
 
 

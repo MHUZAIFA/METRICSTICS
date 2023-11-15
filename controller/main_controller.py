@@ -1,6 +1,6 @@
 # metrics_app/controller/main_controller.py
 from typing import Any, Dict, Optional, List
-from controller.main_controller_interface import MainControllerInterface
+from controller.main_controller_interface import MainControllerInterface, ResultsNotAvailableError
 from model.metrics_calculator_interface import MetricsCalculatorInterface
 from model.session_manager_interface import SessionManagerInterface
 from tkinter import messagebox
@@ -28,7 +28,7 @@ class MainController(MainControllerInterface):
             self.session_manager.save_session(name=name, results=results)
         else:
             print("no dataset and results")
-            messagebox.showinfo("Alert", "Generate results to save a session!")
+            raise ResultsNotAvailableError("Generate results to save a session!")
 
     def load_session(self, session_id: Optional[str] = None) -> Any:
         return self.session_manager.get_session_by_id(session_id)
