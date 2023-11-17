@@ -3,7 +3,6 @@ from typing import Any, Dict, Optional, List
 from controller.main_controller_interface import MainControllerInterface, ResultsNotAvailableError
 from model.metrics_calculator_interface import MetricsCalculatorInterface
 from model.session_manager_interface import SessionManagerInterface
-from tkinter import messagebox
 
 class MainController(MainControllerInterface):
     def __init__(self, 
