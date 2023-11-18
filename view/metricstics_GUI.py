@@ -545,18 +545,22 @@ class MetricsticsGUI:
         def generate_action():
             # Replace this with the action you want the "Clear" button to perform
             print("Generate button clicked!")
+            
             self.input_text = self.text_input.get("1.0", tk.END).strip()
 
             if not self.input_text:
                 messagebox.showinfo("Alert", "Input is empty!")
 
             # Check if the input_text contains only numbers, spaces, and commas
-            elif re.match("^[0-9, ]+$", self.input_text):
+            elif re.match("^-?\d+(?:,-?\d+)*$", self.input_text):
                 # Perform actions with the input_text as needed
                 print("Generate button clicked! Input text:", self.input_text)
 
                 # Split the input_text into an array of numbers
                 numbers = [int(num.strip()) for num in self.input_text.split(',')]
+
+                if(len(numbers)<2):
+                    messagebox.showinfo("Alert", "Please enter atleast two numbers")
 
                 # Perform actions with the array of numbers as needed
                 print("Generate button clicked! Numbers:", numbers)
@@ -582,6 +586,7 @@ class MetricsticsGUI:
             else:
                 # Display an error message or take appropriate action
                 print("Invalid input! Please enter numbers, spaces, and commas only.")
+                messagebox.showinfo("Alert", "Invalid input! Please enter numbers, spaces, and commas only.")
 
 
         generate_button = PrimaryButton(row_frame3, text="Generate", expand=True, command=generate_action, state="normal")
