@@ -6,6 +6,7 @@ requirements.txt
 project_structure.txt
 main.py
 init.py
+.gitignore
 [controller]
 ├── init.py
 ├── main_controller.py
@@ -32,8 +33,16 @@ init.py
 └── project screenshots for readme file
 [sessions]
 ├── [datasets]
-└── location to save dataset assocoated to a saved session
+├── location to save dataset assocoated to a saved session
 └── session_info.json # to save session metadata
+[shared]
+├── init.py
+└── custom_exceptions.py
+[test]
+├── init.py
+├── test_main_controller.py
+├── test_metrics_calculator.py
+└── test_session_manager.py
 [view]
 ├── init.py
 └── metricstics_GUI.py
