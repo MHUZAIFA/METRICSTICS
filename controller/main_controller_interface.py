@@ -22,6 +22,3 @@ class MainControllerInterface(ABC):
     @abstractmethod
     def load_session(self, session_id: Optional[str] = None) -> Any:
         pass
-
-class ResultsNotAvailableError(Exception):
-    pass

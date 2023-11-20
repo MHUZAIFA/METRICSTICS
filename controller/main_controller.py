@@ -1,8 +1,9 @@
 # metrics_app/controller/main_controller.py
 from typing import Any, Dict, Optional, List
-from controller.main_controller_interface import MainControllerInterface, ResultsNotAvailableError
+from controller.main_controller_interface import MainControllerInterface
 from model.metrics_calculator_interface import MetricsCalculatorInterface
 from model.session_manager_interface import SessionManagerInterface
+from shared.custom_exceptions import ResultsNotAvailableError
 
 class MainController(MainControllerInterface):
     def __init__(self, 

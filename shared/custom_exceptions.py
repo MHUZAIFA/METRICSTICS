@@ -1,0 +1,2 @@
+class ResultsNotAvailableError(Exception):
+    pass

@@ -13,7 +13,7 @@ import controller
 import re
 from tkinter import PhotoImage
 from tkinter import messagebox
-from controller.main_controller_interface import ResultsNotAvailableError
+from shared.custom_exceptions import ResultsNotAvailableError
 
 primaryBgColor = '#171717'
 primaryBtnBgColor = '#272727'
@@ -267,12 +267,6 @@ class MetricsticsGUI:
         # set window size to full screen
         self.root.state('zoomed')
         
-        try:
-            image_path = "icons/icon.ico"
-            icon = PhotoImage(file=image_path)
-            self.root.tk.call('wm', 'iconphoto', self.root._w, icon)
-        except tk.TclError as e:
-            print(f"Error setting icon: {e}")
         # set background color
         self.root.configure(background=primaryBgColor)
         
@@ -421,6 +415,7 @@ class MetricsticsGUI:
             if name:
                 try:
                     self.controller.save_session(name=name)
+                    # Sameer - add logic here to refresh list
                 except ResultsNotAvailableError as e:
                     print(f"Error: {e}")
                     messagebox.showinfo("Alert", e)
@@ -550,6 +545,7 @@ class MetricsticsGUI:
         def generate_action():
             # Replace this with the action you want the "Clear" button to perform
             print("Generate button clicked!")
+            
             self.input_text = self.text_input.get("1.0", tk.END).strip()
 
             if not self.input_text:
@@ -562,6 +558,9 @@ class MetricsticsGUI:
 
                 # Split the input_text into an array of numbers
                 numbers = [int(num.strip()) for num in self.input_text.split(',')]
+
+                if(len(numbers)<2):
+                    messagebox.showinfo("Alert", "Please enter atleast two numbers")
 
                 # Perform actions with the array of numbers as needed
                 print("Generate button clicked! Numbers:", numbers)
@@ -587,6 +586,7 @@ class MetricsticsGUI:
             else:
                 # Display an error message or take appropriate action
                 print("Invalid input! Please enter numbers, spaces, and commas only.")
+                messagebox.showinfo("Alert", "Invalid input! Please enter numbers, spaces, and commas only.")
 
 
         generate_button = PrimaryButton(row_frame3, text="Generate", expand=True, command=generate_action, state="normal")
