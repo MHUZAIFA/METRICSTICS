@@ -101,7 +101,6 @@ class ScrollableLabelFrame:
         self.scrollable_label.configure(state="disabled")
 
 
-
 class InfoCard:
     def __init__(self, master, number, title):
         self.master = master
@@ -131,7 +130,6 @@ class InfoCard:
             self.number = "{:.2f}".format(new_number)
 
         self.number_label.config(text=str(self.number))
-
 
 
 class IconButton:
@@ -332,12 +330,8 @@ class MetricsticsGUI:
         col3_frame = tk.Frame(self.root, width=self.root.winfo_screenwidth() * 0.33, bg=primaryBgColor)
         col3_frame.pack(side="left", fill="both", expand=True)
 
-        #---------------------------- column 1 start -----------------------------------------
 
-        # Add the first row in column 1 with 100% height
-        row_frame1 = tk.Frame(col1_frame, bg=primaryBgColor, pady=10)  # Add background color for visibility
-        row_frame1.pack(side="top", fill="both")
-
+        # UI functions
         def clear_action():
             # Replace this with the action you want the "Clear" button to perform
             print("Clear button clicked!")
@@ -553,6 +547,80 @@ class MetricsticsGUI:
                 print("Invalid input! Please enter numbers, spaces, and commas only.")
                 messagebox.showinfo("Alert", "Invalid input! Please enter numbers, spaces, and commas only.")
 
+        def on_item_click(event):
+            selected_index = mylist.curselection()
+            if selected_index:
+                selected_item_id = selected_index[0]
+                print(f"Item clicked with ID: {selected_item_id}")
+
+                # Check if the index is within the bounds of the self.session_list
+                if 0 <= selected_item_id < len(self.session_list):
+                    selected_session = self.session_list[selected_item_id]
+
+                    # Display session name based on id
+                    session_name = selected_session.name  # Replace with the actual attribute
+                    print(f"Session Name: {session_name}")
+
+                    # Display a confirmation dialog
+                    answer = askyesno(
+                        title='Confirmation',
+                        message=f'Are you sure that you want to load session: {session_name}?'
+                    )
+
+                    if answer:
+                        print(f"Loading session with id: {selected_item_id}")
+                        print(selected_index)
+                        result = self.controller.load_session(selected_session.id)
+
+                        print("session: loading file input")
+                        file_path = result.datasetFilePath
+                        name = result.name
+                        timestamp = result.timestamp
+                        results = result.results
+                        if file_path:
+                            try:
+                                with open(file_path, 'r') as file:
+                                    content = file.read().strip()
+                                    numbers = [int(num) for num in content.split(",")]
+
+                                    # Set the text area input to the numbers from the file
+                                    self.text_input.delete(1.0, tk.END)  # Clear existing content
+                                    self.text_input.insert(tk.END, ", ".join(map(str, numbers)))
+                                    keyboard_button.select()
+                                    selected_input_text.config(text="Session loaded")
+                                    selected_input_subtext.config(text=f"Name: {name} | Date: {format_timestamp(timestamp)} ")
+                                    
+
+                            except ValueError:
+                                tk.messagebox.showerror("Error", "Incorrect input found in the uploaded file. File should contain numbers separated by commas.")
+                        else:
+                            print("No file selected.")
+
+                        print(results)
+
+                        self.minimumCard.update_number(results["min"])
+                        self.maximumCard.update_number(results["max"])
+                        self.medianCard.update_number(results["median"])
+
+                        self.meanCard.update_number(results["mean"])
+                        self.madCard.update_number(results["mean_abs_deviation"])
+                        self.standardDeviationCard.update_number(results["std_deviation"])
+
+                        self.mode_card.setContent(", ".join(map(str, results["mode"])))
+
+        def format_timestamp(timestamp) -> str:
+            if timestamp is not None:
+                date_object = datetime.utcfromtimestamp(timestamp)
+                formatted_date = date_object.strftime("%d-%b-%Y %H:%M:%S")
+                return formatted_date
+            return ""
+
+
+        #---------------------------- column 1 start -----------------------------------------
+
+        # Add the first row in column 1 with 100% height
+        row_frame1 = tk.Frame(col1_frame, bg=primaryBgColor, pady=10)  # Add background color for visibility
+        row_frame1.pack(side="top", fill="both")
 
         # Create three IconButton instances in the first row of column 1
         keyboard_button = IconButton(row_frame1, 'icons/keyboard.png', 'Keyboard', primaryBtnBgColor, get_user_input)
@@ -693,74 +761,6 @@ class MetricsticsGUI:
 
         mylist = Listbox(row_frame9, yscrollcommand=self.scrollbar.set, font=small_font, background=primaryBgColor, bg=primaryBgColor, border=0, foreground="white")
         
-        def on_item_click(event):
-            selected_index = mylist.curselection()
-            if selected_index:
-                selected_item_id = selected_index[0]
-                print(f"Item clicked with ID: {selected_item_id}")
-
-                # Check if the index is within the bounds of the self.session_list
-                if 0 <= selected_item_id < len(self.session_list):
-                    selected_session = self.session_list[selected_item_id]
-
-                    # Display session name based on id
-                    session_name = selected_session.name  # Replace with the actual attribute
-                    print(f"Session Name: {session_name}")
-
-                    # Display a confirmation dialog
-                    answer = askyesno(
-                        title='Confirmation',
-                        message=f'Are you sure that you want to load session: {session_name}?'
-                    )
-
-                    if answer:
-                        print(f"Loading session with id: {selected_item_id}")
-                        print(selected_index)
-                        result = self.controller.load_session(selected_session.id)
-
-                        print("session: loading file input")
-                        file_path = result.datasetFilePath
-                        name = result.name
-                        timestamp = result.timestamp
-                        results = result.results
-                        if file_path:
-                            try:
-                                with open(file_path, 'r') as file:
-                                    content = file.read().strip()
-                                    numbers = [int(num) for num in content.split(",")]
-
-                                    # Set the text area input to the numbers from the file
-                                    self.text_input.delete(1.0, tk.END)  # Clear existing content
-                                    self.text_input.insert(tk.END, ", ".join(map(str, numbers)))
-                                    keyboard_button.select()
-                                    selected_input_text.config(text="Session loaded")
-                                    selected_input_subtext.config(text=f"Name: {name} | Date: {format_timestamp(timestamp)} ")
-                                    
-
-                            except ValueError:
-                                tk.messagebox.showerror("Error", "Incorrect input found in the uploaded file. File should contain numbers separated by commas.")
-                        else:
-                            print("No file selected.")
-
-                        print(results)
-
-                        self.minimumCard.update_number(results["min"])
-                        self.maximumCard.update_number(results["max"])
-                        self.medianCard.update_number(results["median"])
-
-                        self.meanCard.update_number(results["mean"])
-                        self.madCard.update_number(results["mean_abs_deviation"])
-                        self.standardDeviationCard.update_number(results["std_deviation"])
-
-                        self.mode_card.setContent(", ".join(map(str, results["mode"])))
-
-        def format_timestamp(timestamp) -> str:
-            if timestamp is not None:
-                date_object = datetime.utcfromtimestamp(timestamp)
-                formatted_date = date_object.strftime("%d-%b-%Y %H:%M:%S")
-                return formatted_date
-            return ""
-
         mylist.bind("<ButtonRelease-1>", on_item_click)
 
         self.session_list = self.controller.get_all_sessions()
