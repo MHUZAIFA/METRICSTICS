@@ -59,7 +59,12 @@ class MetricsCalculator(MetricsCalculatorInterface):
         return self.calculate_sum(sorted_data) / length
     
     def median(self, sorted_data, length):
-        return sorted_data[length // 2]
+        if length % 2 == 1:
+            return sorted_data[length // 2]
+        elif length == 0:
+            return None
+        else:
+            return (sorted_data[length // 2 - 1] + sorted_data[length // 2]) / 2
     
     def mode(self, sorted_data):
         frequency_map = {}
