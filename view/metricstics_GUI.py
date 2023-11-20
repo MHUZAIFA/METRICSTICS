@@ -239,6 +239,13 @@ class SecondaryButton:
 
 class MetricsticsGUI:
     session_list = []
+    minimumCard = None
+    maximumCard = None
+    meanCard = None
+    medianCard = None
+    madCard = None
+    standardDeviationCard = None
+    mode_card = None
 
     def __init__(self, controller: controller.MainController):
         self.root = tk.Tk()
@@ -333,7 +340,43 @@ class MetricsticsGUI:
         row_frame1 = tk.Frame(col1_frame, bg=primaryBgColor, pady=10)  # Add background color for visibility
         row_frame1.pack(side="top", fill="both")
 
+        def clear_action():
+            # Replace this with the action you want the "Clear" button to perform
+            print("Clear button clicked!")
+            get_user_input('Keyboard')
+            self.text_input.delete(1.0, tk.END)
+            
+            self.minimumCard.update_number(0)
+            self.maximumCard.update_number(0)
+            self.medianCard.update_number(0)
+
+            self.meanCard.update_number(0)
+            self.madCard.update_number(0)
+            self.standardDeviationCard.update_number(0)
+
+            self.mode_card.setContent(0)
+            self.controller.clear_data()
+
+
+        def clear_results():
+            print("Clearing results!")
+
+            if self.minimumCard:
+            
+                self.minimumCard.update_number(0)
+                self.maximumCard.update_number(0)
+                self.medianCard.update_number(0)
+
+                self.meanCard.update_number(0)
+                self.madCard.update_number(0)
+                self.standardDeviationCard.update_number(0)
+
+                self.mode_card.setContent(0)
+                self.controller.clear_data()
+
+
         def get_user_input(button_title):
+            clear_results()
             # Common function to get user input based on the button clicked
             if button_title == "Keyboard":
                 print("Getting keyboard input")
@@ -383,31 +426,6 @@ class MetricsticsGUI:
                 self.text_input.delete(1.0, tk.END)  # Clear existing content
                 self.text_input.insert(tk.END, ", ".join(map(str, sorted_numbers)))
 
-        # Create three IconButton instances in the first row of column 1
-        keyboard_button = IconButton(row_frame1, 'icons/keyboard.png', 'Keyboard', primaryBtnBgColor, get_user_input)
-        file_button = IconButton(row_frame1, 'icons/file.png', 'File', primaryBtnBgColor, get_user_input)
-        auto_button = IconButton(row_frame1, 'icons/ai.png', 'Auto', primaryBtnBgColor, get_user_input)
-
-        # Pack the buttons in a flex-row fashion with space between them
-        keyboard_button.button_label.pack(side="left", padx=10)
-        file_button.button_label.pack(side="left", padx=10)
-        auto_button.button_label.pack(side="left", padx=10)
-
-        # Add the second row in column 1
-        row_frame2 = tk.Frame(col1_frame, bg=primaryBgColor, padx=0, pady=10)  # Add background color for visibility
-        row_frame2.pack(side="top", fill="both")
-
-        # Add a frame for the text labels
-        frame_text_labels = tk.Frame(row_frame2, bg=primaryBgColor)
-        frame_text_labels.pack(side="left", fill="both")
-
-        # Add the first text label on the left of the frame
-        selected_input_text = tk.Label(frame_text_labels, text="Your Text Here", fg='white', bg=primaryBgColor)
-        selected_input_text.pack(side="top", padx=10, anchor="w")
-
-        # Add the second text label below the existing selected_input_text
-        selected_input_subtext = tk.Label(frame_text_labels, text="Another Text Label", fg='white', bg=primaryBgColor)
-        selected_input_subtext.pack(side="top", padx=10, anchor="w")
 
         def get_name():
             name = self.sessionName.get()
@@ -480,68 +498,13 @@ class MetricsticsGUI:
             open_popup()
 
 
-        # Save button
-        save_button = PrimaryButton(row_frame2, text="Save", expand=False, command=save_action, state="normal")
-        save_button.button.pack(side="right", padx=10, pady=10)
-
-        # select keyboard input by default - can be set only after labels are initialized
-        get_user_input('Keyboard')
-
-        # scrollable text area
-        # Add a new row frame between row_frame2 and row_frame3
-        row_frame_text_input = tk.Frame(col1_frame, bg=primaryBgColor, padx=10, pady=0)  # Add background color for visibility
-        row_frame_text_input.pack(side="top", fill="both", expand=True)
-
         def on_text_area_change(event):
             # Your code to handle the text area change goes here
             print("Text area content changed")
             # switch to custom user input
             get_user_input('Keyboard')
 
-        # Add a scrollable textarea input in the new row frame
-        self.text_input = tk.Text(row_frame_text_input, wrap="word", width=40, height=10, padx=10, pady=10, background=primaryBgColor, foreground="white")
-        self.text_input.pack(side="left", fill="both", expand=True)
-        self.text_input.bind("<KeyRelease>", on_text_area_change)
-
-        # Add a scrollbar to the textarea
-        text_scrollbar = ttk.Scrollbar(row_frame_text_input, command=self.text_input.yview)
-        text_scrollbar.pack(side="right", fill="y")
-
-        # Create a custom style for the scrollbar
-        scrollbar_style = ttk.Style()
-        scrollbar_style.configure("TScrollbar")
-
-        # Apply the custom style to the scrollbar
-        text_scrollbar.config(style="TScrollbar")
-
-        self.text_input.config(yscrollcommand=text_scrollbar.set, highlightbackground=primaryBtnBgColor, highlightcolor=primaryBtnBgColor, insertbackground='white')
-
-        # Add the third row in column 1
-        row_frame3 = tk.Frame(col1_frame, bg=primaryBgColor, padx=0, pady=10)  # Add background color for visibility
-        row_frame3.pack(side="top", fill="both")
-
-        def clear_action():
-            # Replace this with the action you want the "Clear" button to perform
-            print("Clear button clicked!")
-            get_user_input('Keyboard')
-            self.text_input.delete(1.0, tk.END)
-            
-            minimumCard.update_number(0)
-            maximumCard.update_number(0)
-            medianCard.update_number(0)
-
-            meanCard.update_number(0)
-            madCard.update_number(0)
-            standardDeviationCard.update_number(0)
-
-            self.mode_card.setContent(0)
-            self.controller.clear_data()
-
-
-        # Add a clear button on the left side of the third row
-        clear_button = PrimaryButton(row_frame3, text="Clear", expand=True, command=clear_action, state="normal")
-
-        # Add a generate button on the right side of the third row
+        
         def generate_action():
             # Replace this with the action you want the "Clear" button to perform
             print("Generate button clicked!")
@@ -572,13 +535,13 @@ class MetricsticsGUI:
                 self.text_input.delete(1.0, tk.END)
                 self.text_input.insert(tk.END, ", ".join(map(str, result["sorted_data"])))
 
-                minimumCard.update_number(result["min_value"])
-                maximumCard.update_number(result["max_value"])
-                medianCard.update_number(result["median_value"])
+                self.minimumCard.update_number(result["min_value"])
+                self.maximumCard.update_number(result["max_value"])
+                self.medianCard.update_number(result["median_value"])
 
-                meanCard.update_number(result["mean_value"])
-                madCard.update_number(result["mean_abs_deviation"])
-                standardDeviationCard.update_number(result["std_deviation"])
+                self.meanCard.update_number(result["mean_value"])
+                self.madCard.update_number(result["mean_abs_deviation"])
+                self.standardDeviationCard.update_number(result["std_deviation"])
 
                 self.mode_card.setContent(", ".join(map(str, result["mode_value"])))
 
@@ -589,6 +552,69 @@ class MetricsticsGUI:
                 messagebox.showinfo("Alert", "Invalid input! Please enter numbers, spaces, and commas only.")
 
 
+        # Create three IconButton instances in the first row of column 1
+        keyboard_button = IconButton(row_frame1, 'icons/keyboard.png', 'Keyboard', primaryBtnBgColor, get_user_input)
+        file_button = IconButton(row_frame1, 'icons/file.png', 'File', primaryBtnBgColor, get_user_input)
+        auto_button = IconButton(row_frame1, 'icons/ai.png', 'Auto', primaryBtnBgColor, get_user_input)
+
+        # Pack the buttons in a flex-row fashion with space between them
+        keyboard_button.button_label.pack(side="left", padx=10)
+        file_button.button_label.pack(side="left", padx=10)
+        auto_button.button_label.pack(side="left", padx=10)
+
+        # Add the second row in column 1
+        row_frame2 = tk.Frame(col1_frame, bg=primaryBgColor, padx=0, pady=10)  # Add background color for visibility
+        row_frame2.pack(side="top", fill="both")
+
+        # Add a frame for the text labels
+        frame_text_labels = tk.Frame(row_frame2, bg=primaryBgColor)
+        frame_text_labels.pack(side="left", fill="both")
+
+        # Add the first text label on the left of the frame
+        selected_input_text = tk.Label(frame_text_labels, text="Your Text Here", fg='white', bg=primaryBgColor)
+        selected_input_text.pack(side="top", padx=10, anchor="w")
+
+        # Add the second text label below the existing selected_input_text
+        selected_input_subtext = tk.Label(frame_text_labels, text="Another Text Label", fg='white', bg=primaryBgColor)
+        selected_input_subtext.pack(side="top", padx=10, anchor="w")
+
+        # Save button
+        save_button = PrimaryButton(row_frame2, text="Save", expand=False, command=save_action, state="normal")
+        save_button.button.pack(side="right", padx=10, pady=10)
+
+        # select keyboard input by default - can be set only after labels are initialized
+        get_user_input('Keyboard')
+
+        # scrollable text area
+        # Add a new row frame between row_frame2 and row_frame3
+        row_frame_text_input = tk.Frame(col1_frame, bg=primaryBgColor, padx=10, pady=0)  # Add background color for visibility
+        row_frame_text_input.pack(side="top", fill="both", expand=True)
+
+        # Add a scrollable textarea input in the new row frame
+        self.text_input = tk.Text(row_frame_text_input, wrap="word", width=40, height=10, padx=10, pady=10, background=primaryBgColor, foreground="white")
+        self.text_input.pack(side="left", fill="both", expand=True)
+        self.text_input.bind("<KeyRelease>", on_text_area_change)
+
+        # Add a scrollbar to the textarea
+        text_scrollbar = ttk.Scrollbar(row_frame_text_input, command=self.text_input.yview)
+        text_scrollbar.pack(side="right", fill="y")
+
+        # Create a custom style for the scrollbar
+        scrollbar_style = ttk.Style()
+        scrollbar_style.configure("TScrollbar")
+
+        # Apply the custom style to the scrollbar
+        text_scrollbar.config(style="TScrollbar")
+
+        self.text_input.config(yscrollcommand=text_scrollbar.set, highlightbackground=primaryBtnBgColor, highlightcolor=primaryBtnBgColor, insertbackground='white')
+
+        # Add the third row in column 1
+        row_frame3 = tk.Frame(col1_frame, bg=primaryBgColor, padx=0, pady=10)  # Add background color for visibility
+        row_frame3.pack(side="top", fill="both")
+
+        # Add a clear button on the left side of the third row
+        clear_button = PrimaryButton(row_frame3, text="Clear", expand=True, command=clear_action, state="normal")
+
         generate_button = PrimaryButton(row_frame3, text="Generate", expand=True, command=generate_action, state="normal")
 
         #------------------------------ column 1 end -----------------------------------------------------------------
@@ -598,25 +624,25 @@ class MetricsticsGUI:
         row_frame4 = tk.Frame(col2_frame, bg=primaryBgColor, pady=10, padx=10)  # Add background color for visibility
         row_frame4.pack(side="top", fill="both")
 
-        minimumCard = InfoCard(row_frame4, 0, 'Minimum')
-        minimumCard.grid(row=0, column=0)
+        self.minimumCard = InfoCard(row_frame4, 0, 'Minimum')
+        self.minimumCard.grid(row=0, column=0)
 
-        maximumCard = InfoCard(row_frame4, 0, 'Maximum')
-        maximumCard.grid(row=0, column=1)
+        self.maximumCard = InfoCard(row_frame4, 0, 'Maximum')
+        self.maximumCard.grid(row=0, column=1)
 
-        medianCard = InfoCard(row_frame4, 0, 'Median')
-        medianCard.grid(row=0, column=2)
+        self.medianCard = InfoCard(row_frame4, 0, 'Median')
+        self.medianCard.grid(row=0, column=2)
 
         # Add a frame for the label cards
         row_frame5 = tk.Frame(col2_frame, bg=primaryBgColor, pady=10, padx=10)  # Add background color for visibility
         row_frame5.pack(side="top", fill="both")
 
-        meanCard = InfoCard(row_frame5, 0, 'Mean')
-        meanCard.grid(row=1, column=0)
-        madCard = InfoCard(row_frame5, 0, 'MAD')
-        madCard.grid(row=1, column=1)
-        standardDeviationCard = InfoCard(row_frame5, 0, 'Standard Deviation')
-        standardDeviationCard.grid(row=1, column=2)
+        self.meanCard = InfoCard(row_frame5, 0, 'Mean')
+        self.meanCard.grid(row=1, column=0)
+        self.madCard = InfoCard(row_frame5, 0, 'MAD')
+        self.madCard.grid(row=1, column=1)
+        self.standardDeviationCard = InfoCard(row_frame5, 0, 'Standard Deviation')
+        self.standardDeviationCard.grid(row=1, column=2)
 
         # Add a frame for the label cards
         row_frame6 = tk.Frame(col2_frame, bg=primaryBgColor, pady=10, padx=10)  # Add background color for visibility
@@ -716,13 +742,13 @@ class MetricsticsGUI:
 
                         print(results)
 
-                        minimumCard.update_number(results["min"])
-                        maximumCard.update_number(results["max"])
-                        medianCard.update_number(results["median"])
+                        self.minimumCard.update_number(results["min"])
+                        self.maximumCard.update_number(results["max"])
+                        self.medianCard.update_number(results["median"])
 
-                        meanCard.update_number(results["mean"])
-                        madCard.update_number(results["mean_abs_deviation"])
-                        standardDeviationCard.update_number(results["std_deviation"])
+                        self.meanCard.update_number(results["mean"])
+                        self.madCard.update_number(results["mean_abs_deviation"])
+                        self.standardDeviationCard.update_number(results["std_deviation"])
 
                         self.mode_card.setContent(", ".join(map(str, results["mode"])))
 
