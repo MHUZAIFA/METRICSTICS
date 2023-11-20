@@ -266,12 +266,6 @@ class MetricsticsGUI:
         # set window size to full screen
         self.root.state('zoomed')
         
-        try:
-            image_path = "icons/icon.ico"
-            icon = PhotoImage(file=image_path)
-            self.root.tk.call('wm', 'iconphoto', self.root._w, icon)
-        except tk.TclError as e:
-            print(f"Error setting icon: {e}")
         # set background color
         self.root.configure(background=primaryBgColor)
         
@@ -553,7 +547,7 @@ class MetricsticsGUI:
                 messagebox.showinfo("Alert", "Input is empty!")
 
             # Check if the input_text contains only numbers, spaces, and commas
-            elif re.match("^-?\d+(?:,-?\d+)*$", self.input_text):
+            elif re.match("^[0-9, ]+$", self.input_text):
                 # Perform actions with the input_text as needed
                 print("Generate button clicked! Input text:", self.input_text)
 
