@@ -42,7 +42,12 @@ class SessionManager(SessionManagerInterface):
         with open(file_path, 'w') as file:
             json.dump([session.__dict__ for session in existing_sessions], file, indent=2)
 
+        result = self.get_all_sessions()
+
         print("Session saved successfully!")
+        # print(result)
+
+        return result
 
 
             

@@ -46,5 +46,322 @@
       "mean_abs_deviation": 2516.87,
       "std_deviation": 2890.82
     }
+  },
+  {
+    "id": "72e657af-9116-4314-8b0f-4db4f7cf5654",
+    "name": "test222",
+    "datasetFilePath": "sessions\\datasets\\c6fafa22-0de7-4659-ba6e-f52c93644be1.txt",
+    "timestamp": 1700438741,
+    "results": {
+      "min": 1,
+      "max": 998,
+      "mean": 501.98505434782606,
+      "median": 514,
+      "mode": [
+        104,
+        144,
+        283,
+        346,
+        595,
+        661,
+        744,
+        757,
+        977
+      ],
+      "mean_abs_deviation": 261.1539387405456,
+      "std_deviation": 298.17442014863593
+    }
+  },
+  {
+    "id": "0d39ea65-1a67-43ad-b719-43f9bbc68b31",
+    "name": "test33",
+    "datasetFilePath": "sessions\\datasets\\1fbe352b-9a37-4584-80df-6e95ceab8ce3.txt",
+    "timestamp": 1700439068,
+    "results": {
+      "min": 1,
+      "max": 999,
+      "mean": 504.81206496519724,
+      "median": 505,
+      "mode": [
+        801
+      ],
+      "mean_abs_deviation": 246.27610208816705,
+      "std_deviation": 284.53631338783333
+    }
+  },
+  {
+    "id": "3e7396af-ddc1-4cbd-b58a-823cb72fd9aa",
+    "name": "wesds",
+    "datasetFilePath": "sessions\\datasets\\82a61e8f-a4ae-4447-80e3-33fcc4c044f2.txt",
+    "timestamp": 1700441322,
+    "results": {
+      "min": 7,
+      "max": 993,
+      "mean": 498.5164319248826,
+      "median": 497,
+      "mode": [
+        676
+      ],
+      "mean_abs_deviation": 244.6784809010566,
+      "std_deviation": 288.87625234105263
+    }
+  },
+  {
+    "id": "9cc4dc46-29af-4dfc-89f8-7d1bad6c5c42",
+    "name": "est",
+    "datasetFilePath": "sessions\\datasets\\9be8d0d9-5597-4683-b524-d8bb88496316.txt",
+    "timestamp": 1700442855,
+    "results": {
+      "min": 3,
+      "max": 999,
+      "mean": 496.515923566879,
+      "median": 505,
+      "mode": [
+        215
+      ],
+      "mean_abs_deviation": 259.35628220211794,
+      "std_deviation": 296.20435588808783
+    }
+  },
+  {
+    "id": "2fb38c85-83e0-4de2-8349-d5b6ce42252c",
+    "name": "21212",
+    "datasetFilePath": "sessions\\datasets\\e4b4c50f-16dc-4478-8013-103b693e6385.txt",
+    "timestamp": 1700442950,
+    "results": {
+      "min": 2,
+      "max": 1000,
+      "mean": 494.92857142857144,
+      "median": 485,
+      "mode": [
+        11,
+        191,
+        738
+      ],
+      "mean_abs_deviation": 251.43673469387508,
+      "std_deviation": 289.4413825726688
+    }
+  },
+  {
+    "id": "63aa680d-d928-438b-9604-a4e87c4a605e",
+    "name": "qwert",
+    "datasetFilePath": "sessions\\datasets\\80aae590-5e43-4475-aeab-196091ae0b95.txt",
+    "timestamp": 1700443052,
+    "results": {
+      "min": 1,
+      "max": 1000,
+      "mean": 494.8961661341853,
+      "median": 492,
+      "mode": [
+        587,
+        948
+      ],
+      "mean_abs_deviation": 250.3875154385553,
+      "std_deviation": 290.28663330253323
+    }
+  },
+  {
+    "id": "54f460ca-a149-4ae7-b855-66c9ef291887",
+    "name": "erty",
+    "datasetFilePath": "sessions\\datasets\\d2de79bf-0f07-4461-867a-a20e860858af.txt",
+    "timestamp": 1700443260,
+    "results": {
+      "min": 1,
+      "max": 998,
+      "mean": 496.263698630137,
+      "median": 524,
+      "mode": [
+        146
+      ],
+      "mean_abs_deviation": 255.51151717019985,
+      "std_deviation": 292.4397121759508
+    }
+  },
+  {
+    "id": "aac3db82-12bb-481b-945e-e61936e21ed5",
+    "name": "asd",
+    "datasetFilePath": "sessions\\datasets\\290e864a-a12d-49ae-9ebd-b1779014f5d2.txt",
+    "timestamp": 1700443644,
+    "results": {
+      "min": 1,
+      "max": 1000,
+      "mean": 500.6407506702413,
+      "median": 513,
+      "mode": [
+        52,
+        980
+      ],
+      "mean_abs_deviation": 249.39129153519187,
+      "std_deviation": 291.1197889696463
+    }
+  },
+  {
+    "id": "a8e85cd3-789c-4145-bdd9-e5620bb99eda",
+    "name": "zxc",
+    "datasetFilePath": "sessions\\datasets\\28bd14a8-ed29-45c2-917b-c82e000ccf73.txt",
+    "timestamp": 1700443703,
+    "results": {
+      "min": 1,
+      "max": 999,
+      "mean": 495.1032028469751,
+      "median": 496,
+      "mode": [
+        789,
+        838
+      ],
+      "mean_abs_deviation": 253.80414803932712,
+      "std_deviation": 290.3006336779553
+    }
+  },
+  {
+    "id": "af131013-2832-44ec-b927-030260ce7e9d",
+    "name": "aaamee",
+    "datasetFilePath": "sessions\\datasets\\01d3cbc8-d097-4829-9af1-e7ee5c6983fc.txt",
+    "timestamp": 1700443805,
+    "results": {
+      "min": 1,
+      "max": 1000,
+      "mean": 504.25080906148867,
+      "median": 517,
+      "mode": [
+        770,
+        952,
+        979
+      ],
+      "mean_abs_deviation": 251.38994669096508,
+      "std_deviation": 291.74764143991507
+    }
+  },
+  {
+    "id": "5c04ac06-8174-4830-84ef-1b71755e401a",
+    "name": "ppoi",
+    "datasetFilePath": "sessions\\datasets\\4c4ed0be-fa7f-4b76-b6b7-ca21ed25c999.txt",
+    "timestamp": 1700444043,
+    "results": {
+      "min": 1,
+      "max": 1000,
+      "mean": 499.4148148148148,
+      "median": 497,
+      "mode": [
+        26,
+        31,
+        76,
+        82,
+        99,
+        161,
+        290,
+        330,
+        334,
+        378,
+        423,
+        471,
+        554,
+        661,
+        753,
+        763,
+        829,
+        832,
+        926,
+        939,
+        996
+      ],
+      "mean_abs_deviation": 253.77931412894648,
+      "std_deviation": 292.18738622570646
+    }
+  },
+  {
+    "id": "9efe38b8-6312-412d-ba08-4765e4b8db16",
+    "name": "qqqqqq",
+    "datasetFilePath": "sessions\\datasets\\81816a4b-1c83-4197-85d7-984b729ce638.txt",
+    "timestamp": 1700444597,
+    "results": {
+      "min": 2,
+      "max": 1000,
+      "mean": 520.376,
+      "median": 556,
+      "mode": [
+        629,
+        701,
+        918
+      ],
+      "mean_abs_deviation": 250.7609600000015,
+      "std_deviation": 289.0309233006045
+    }
+  },
+  {
+    "id": "85874b4d-7a9f-4d7c-8b0b-e251f862896d",
+    "name": "sssss",
+    "datasetFilePath": "sessions\\datasets\\307f3a63-8379-4e59-a8c4-73f89b9d9cd0.txt",
+    "timestamp": 1700444943,
+    "results": {
+      "min": 2,
+      "max": 997,
+      "mean": 486.75,
+      "median": 470,
+      "mode": [
+        55,
+        122
+      ],
+      "mean_abs_deviation": 247.46747967479675,
+      "std_deviation": 286.4632464471501
+    }
+  },
+  {
+    "id": "de9e30fd-4643-448a-9520-de8e27c31006",
+    "name": "win",
+    "datasetFilePath": "sessions\\datasets\\454a307c-0f3c-4c37-b585-511da5f624f9.txt",
+    "timestamp": 1700445040,
+    "results": {
+      "min": 2,
+      "max": 999,
+      "mean": 479.31363636363636,
+      "median": 457,
+      "mode": [
+        14,
+        345
+      ],
+      "mean_abs_deviation": 237.4750688705252,
+      "std_deviation": 277.3639936357363
+    }
+  },
+  {
+    "id": "001763a8-ea56-4f23-af48-7daedaf9954c",
+    "name": "lost",
+    "datasetFilePath": "sessions\\datasets\\682bdcce-81c7-4f9b-8e42-5bc8760531bb.txt",
+    "timestamp": 1700445109,
+    "results": {
+      "min": 1,
+      "max": 997,
+      "mean": 508.01522842639594,
+      "median": 507,
+      "mode": [
+        16,
+        83,
+        125,
+        168,
+        184,
+        248,
+        344,
+        391,
+        409,
+        464,
+        562,
+        565,
+        669,
+        682,
+        702,
+        759,
+        771,
+        776,
+        838,
+        868,
+        891,
+        924,
+        926,
+        979
+      ],
+      "mean_abs_deviation": 247.00007730165677,
+      "std_deviation": 285.24545449707387
+    }
   }
 ]

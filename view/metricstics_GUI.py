@@ -242,6 +242,7 @@ class MetricsticsGUI:
     def __init__(self, controller: controller.MainController):
         self.root = tk.Tk()
         self.controller = controller
+        self.list_of_files = []
         # Create a StringVar to store the entered name
         self.sessionName = tk.StringVar()
 
@@ -418,7 +419,19 @@ class MetricsticsGUI:
             name = self.sessionName.get()
             print(f"Entered Name: {name}")
             if name:
-                self.controller.save_session(name=name)
+                self.list_of_files = self.controller.save_session(name=name)
+                print("list of files: ", self.list_of_files)
+                for item in self.list_of_files:
+                    mylist.insert("end", str(item.name) + " " + "(" + format_timestamp(item.timestamp) + ")")
+
+                mylist.pack(side="left", fill="both", anchor='w', expand=True, padx=(10, 0))
+                self.scrollbar.config(command=mylist.yview)
+
+                # Create a custom style for the scrollbar
+                scrollbar_style = ttk.Style()
+
+                # Apply the custom style to the scrollbar
+                scrollbar_style.configure('TScrollbar', troughcolor='gray', background='#f7f7f7', thickness=12)
             popup.destroy()  # Close the popup after getting the name
 
 
@@ -731,6 +744,9 @@ class MetricsticsGUI:
         mylist.bind("<ButtonRelease-1>", on_item_click)
 
         self.session_list = self.controller.get_all_sessions()
+        # print("session list: ", self.session_list)
+        # self.session_list = self.list_of_files
+        # print(self.list_of_files)
         for item in self.session_list:
             mylist.insert("end", str(item.name) + " " + "(" + format_timestamp(item.timestamp) + ")")
 

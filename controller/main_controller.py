@@ -25,10 +25,11 @@ class MainController(MainControllerInterface):
     def save_session(self, name: str) -> None:
         results = self.metrics_calculator.get_results()
         if results is not None:
-            self.session_manager.save_session(name=name, results=results)
+            files = self.session_manager.save_session(name=name, results=results)
         else:
             print("no dataset and results")
             messagebox.showinfo("Alert", "Generate results to save a session!")
+        return files
 
     def load_session(self, session_id: Optional[str] = None) -> Any:
         return self.session_manager.get_session_by_id(session_id)
