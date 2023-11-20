@@ -419,6 +419,7 @@ class MetricsticsGUI:
             print(f"Entered Name: {name}")
             if name:
                 self.controller.save_session(name=name)
+                # Sameer - add logic here to refresh list
             popup.destroy()  # Close the popup after getting the name
 
 
