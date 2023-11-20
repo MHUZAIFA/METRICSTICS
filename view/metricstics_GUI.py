@@ -431,7 +431,11 @@ class MetricsticsGUI:
             if name:
                 try:
                     self.controller.save_session(name=name)
-                    # Sameer - add logic here to refresh list
+                    self.session_list = self.controller.get_all_sessions()
+                    # Clear the listbox before inserting new items
+                    mylist.delete(0, tk.END)
+                    for item in self.session_list:
+                        mylist.insert("end", str(item.name) + " " + "(" + format_timestamp(item.timestamp) + ")")
                 except ResultsNotAvailableError as e:
                     print(f"Error: {e}")
                     messagebox.showinfo("Alert", e)
