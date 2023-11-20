@@ -363,5 +363,22 @@
       "mean_abs_deviation": 247.00007730165677,
       "std_deviation": 285.24545449707387
     }
+  },
+  {
+    "id": "7a6d78cd-3073-4ad0-a091-620d5d4bf1cd",
+    "name": "111111",
+    "datasetFilePath": "sessions\\datasets\\bbc18fb3-e912-4de8-b840-1d0a3e34b1be.txt",
+    "timestamp": 1700454704,
+    "results": {
+      "min": 9,
+      "max": 996,
+      "mean": 498.2320987654321,
+      "median": 491,
+      "mode": [
+        838
+      ],
+      "mean_abs_deviation": 246.15974394147088,
+      "std_deviation": 285.5339126373006
+    }
   }
 ]
