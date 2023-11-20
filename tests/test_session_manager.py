@@ -1,7 +1,8 @@
 import unittest
 import os
-from ..implementations.session_manager import SessionManager
-from ..implementations.session_info_parser import SessionInfoParser
+from model.session_manager import SessionManager
+from model.session_info_parser import SessionInfoParser
+
 
 class TestSessionManager(unittest.TestCase):
     def setUp(self):
