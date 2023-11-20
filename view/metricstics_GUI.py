@@ -5,13 +5,11 @@ from tkinter import Listbox
 from tkinter import ttk
 from tkinter.messagebox import askyesno
 import random
-from random import randint
 import os
 from tkinter import font
-from datetime import datetime, timedelta
+from datetime import datetime
 import controller
 import re
-from tkinter import PhotoImage
 from tkinter import messagebox
 from shared.custom_exceptions import ResultsNotAvailableError
 

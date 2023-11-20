@@ -1,11 +1,11 @@
 import unittest
-import model
+from model.metrics_calculator import MetricsCalculator
 
 class TestMetricsCalculator(unittest.TestCase):
 
     def setUp(self):
         # Create an instance of the MetricsCalculator for each test
-        self.metrics_calculator = model.MetricsCalculator()
+        self.metrics_calculator = MetricsCalculator()
 
     def test_values_data(self):
         # Test when input data contains positive values
