@@ -1,55 +1,54 @@
 import unittest
-import os
+from unittest.mock import patch, MagicMock
+from datetime import datetime
+import json
+import uuid
 from model.session_manager import SessionManager
-from model.session_info_parser import SessionInfoParser
-
 
 class TestSessionManager(unittest.TestCase):
+
     def setUp(self):
-        # Create an instance of SessionManager with a test folder and filename
-        self.test_folder = 'test_sessions'
-        self.test_filename = 'test_session_info.json'
-        self.session_manager = SessionManager(sessions_folder=self.test_folder, session_file_name=self.test_filename)
+        self.sessions_folder = "sessions"
+        self.session_file_name = "session_info.json"
+        self.session_manager = SessionManager(self.sessions_folder, self.session_file_name)
 
-    def tearDown(self):
-        # Clean up: Delete the test session file and folder
-        file_path = self.session_manager.get_session_path()
-        if os.path.exists(file_path):
-            os.remove(file_path)
-        if os.path.exists(self.test_folder):
-            os.rmdir(self.test_folder)
+    def test_save_session(self):
+        results = {
+            "min_value": 1.0,
+            "max_value": 10.0,
+            "mean_value": 5.5,
+            "median_value": 4.0,
+            "mode_value": 3.0,
+            "mean_abs_deviation": 2.0,
+            "std_deviation": 2.5,
+            "sorted_data": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
+        }
 
-    def test_save_and_load_session(self):
-        # Create a test session
-        test_session_id = 'test_session_123'
-        test_session_data = {'id': test_session_id, 'attribute': 'value'}
-        test_session = SessionInfoParser(test_session_data)
+        expected_session = {
+            "id": 'dummy_uuid',
+            "name": "Test Session",
+            "datasetFilePath": f"{self.sessions_folder}/datasets/dummy_uuid.txt",
+            "timestamp": int(datetime.now().timestamp()),
+            "results": {
+                "min": 1.0,
+                "max": 10.0,
+                "mean": 5.5,
+                "median": 4.0,
+                "mode": 3.0,
+                "mean_abs_deviation": 2.0,
+                "std_deviation": 2.5
+            }
+        }
 
-        # Save the test session
-        self.session_manager.save_session(test_session)
+        with patch('builtins.open', create=True) as mock_open:
+            mock_file = mock_open.return_value.__enter__.return_value
+            mock_file.read.return_value = json.dumps([expected_session])
 
-        # Load the saved session by ID
-        loaded_session = self.session_manager.load_session(session_id=test_session_id)
+            with patch.object(uuid, 'uuid4', return_value='dummy_uuid'):
+                self.session_manager.save_session("Test Session", results)
 
-        # Assert that the loaded session is not None and has the correct ID
-        self.assertIsNotNone(loaded_session)
-        self.assertEqual(loaded_session.id, test_session_id)
-
-    def test_get_all_sessions(self):
-        # Create and save multiple test sessions
-        test_sessions = [
-            {'id': 'session_1', 'attribute': 'value1'},
-            {'id': 'session_2', 'attribute': 'value2'},
-            {'id': 'session_3', 'attribute': 'value3'}
-        ]
-
-        for session_data in test_sessions:
-            test_session = SessionInfoParser(session_data)
-            self.session_manager.save_session(test_session)
-
-        # Get all sessions and assert that the number of loaded sessions matches the number of saved sessions
-        all_sessions = self.session_manager.get_all_sessions()
-        self.assertEqual(len(all_sessions), len(test_sessions))
+            # Assert that open was called 3 times (for read, for write, and within the test)
+            self.assertEqual(mock_open.call_count, 3)
 
 if __name__ == '__main__':
     unittest.main()

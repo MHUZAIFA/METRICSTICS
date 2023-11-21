@@ -141,3 +141,4 @@ class MetricsCalculator(MetricsCalculatorInterface):
         self.mode_value = None
         self.mean_abs_deviation = None
         self.std_deviation = None
+        self.results = None

@@ -11,6 +11,7 @@ Welcome to METRICSTICS, a Python-based statistical calculator with a sleek Tkint
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
+- [Testing](#testing)
 - [Contributors](#contributors)
 - [Contributing](#contributing)
 - [License](#license)
@@ -83,6 +84,19 @@ Run the following command to start METRICSTICS:
 ```bash
 python main.py
 ```
+
+## Testing
+
+To run the `METRICSTICS` unit tests, execute the following command in your terminal:
+
+```bash
+python -m unittest <your_test_module>
+```
+
+Notes:
+1. Replace <your_test_module> with the name of your specific test module or package containing your tests. 
+2. Ensure that you're in the root directory of the project when executing this command. 
+3. This command utilizes Python's built-in unittest module to run your tests.
 
 ## Contributors
 
