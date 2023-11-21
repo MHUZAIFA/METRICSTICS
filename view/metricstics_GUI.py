@@ -409,7 +409,7 @@ class MetricsticsGUI:
                 auto_button.select()
                 selected_input_text.config(text="Auto generated input")
                 # Your code to generate random positive numbers (between 300 and 1000) here
-                random_numbers = [random.randint(1, 1000) for _ in range(random.randint(0, 1000))]
+                random_numbers = [random.randint(1, 1000) for _ in range(random.randint(0, 10000))]
                 sorted_numbers = sorted(random_numbers)
                 selected_input_subtext.config(text=f"Generated {len(sorted_numbers)} random numbers")
                 print("Generated numbers:", sorted_numbers)
