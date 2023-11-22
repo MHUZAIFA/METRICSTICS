@@ -1,48 +1,61 @@
 --- Folder Structure ---
+.gitignore
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 LICENSE
-requirements.txt
+README.md
 project_structure.txt
+requirements.txt
+__init__.py
 main.py
-init.py
-.gitignore
 [controller]
-├── init.py
-├── main_controller.py
-└── main_controller_interface.py
+    ├── __init__.py
+    ├── main_controller.py
+    └── main_controller_interface.py
 [icons]
-├── ai.png
-├── close.png
-├── file.png
-├── icon.ico
-└── keyboard.png
+    ├── ai.png
+    ├── close.png
+    ├── file.png
+    ├── icon.ico
+    └── keyboard.png
 [mock]
-├── invalid_user_input.txt
-├── session_info.json
-└── valid_user_input.txt
+    ├── invalid_user_input.txt
+    ├── session_info.json
+    └── valid_user_input.txt
 [model]
-├── init.py
-├── metrics_calculator.py
-├── metrics_calculator_interface.py
-├── session_info_parser.py
-├── session_info_parser_interface.py
-├── session_manager.py
-└── session_manager_interface.py
+    ├── __init__.py
+    ├── [__pycache__]
+    ├── metrics_calculator.py
+    ├── metrics_calculator_interface.py
+    ├── session_info_parser.py
+    ├── session_info_parser_interface.py
+    ├── session_manager.py
+    └── session_manager_interface.py
 [screenshots]
-└── project screenshots for readme file
+    ├── metricstics_gui_auto.png
+    ├── metricstics_gui_file.png
+    └── metricstics_gui_keyboard.png
 [sessions]
-├── [datasets]
-├── location to save dataset assocoated to a saved session
-└── session_info.json # to save session metadata
+    ├── [datasets]
+        ├── 23d8c404-3f14-4c7b-9b64-5c9d9f381b6b.txt
+        ├── 3f08bc04-7cb9-4c1b-8260-a8f450fa3f5a.txt
+        ├── 402d1e4d-ee14-4ff6-a2cc-4d97870de5e2.txt
+        ├── 47757edd-a5e3-477f-bb5c-e0370d6529fa.txt
+        ├── 4dbb51f7-2bf9-4011-a025-5c9f9b619a03.txt
+        ├── 8658f363-5a04-4931-bbb2-00075a48aa6c.txt
+        ├── 9360df39-0475-4474-bf05-d9450e4a4489.txt
+        ├── bb041b91-8844-4c42-b322-0c24666bdd6f.txt
+        ├── cff6ea9a-7e09-4cbd-8e21-5457767f9aaf.txt
+        ├── e726e39a-009d-4a79-b203-fcbd1c44194b.txt
+        └── e7627b41-04ed-4a5a-970d-96514c5e4552.txt
+    └── session_info.json
 [shared]
-├── init.py
-└── custom_exceptions.py
-[test]
-├── init.py
-├── test_main_controller.py
-├── test_metrics_calculator.py
-└── test_session_manager.py
+    └── custom_exceptions.py
+[tests]
+    ├── __init__.py
+    ├── test_main_controller.py
+    ├── test_metrics_calculator.py
+    └── test_session_manager.py
 [view]
-├── init.py
-└── metricstics_GUI.py
+    ├── __init__.py
+    └── metricstics_GUI.py
