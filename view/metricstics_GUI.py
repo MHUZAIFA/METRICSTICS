@@ -409,7 +409,7 @@ class MetricsticsGUI:
                 auto_button.select()
                 selected_input_text.config(text="Auto generated input")
                 # Your code to generate random positive numbers (between 300 and 1000) here
-                random_numbers = [random.randint(1, 1000) for _ in range(random.randint(0, 10000))]
+                random_numbers = [random.randint(1, 1000) for _ in range(random.randint(1000, 10000))]
                 sorted_numbers = sorted(random_numbers)
                 selected_input_subtext.config(text=f"Generated {len(sorted_numbers)} random numbers")
                 print("Generated numbers:", sorted_numbers)
@@ -511,7 +511,7 @@ class MetricsticsGUI:
                 messagebox.showinfo("Alert", "Input is empty!")
 
             # Check if the input_text contains only numbers, spaces, and commas
-            elif re.match("^[0-9, ]+$", self.input_text):
+            elif re.match("^(1000|[1-9]\d{0,2})(, ?(1000|[1-9]\d{0,2}))*$", self.input_text):
                 # Perform actions with the input_text as needed
                 print("Generate button clicked! Input text:", self.input_text)
 
@@ -544,8 +544,8 @@ class MetricsticsGUI:
 
             else:
                 # Display an error message or take appropriate action
-                print("Invalid input! Please enter numbers, spaces, and commas only.")
-                messagebox.showinfo("Alert", "Invalid input! Please enter numbers, spaces, and commas only.")
+                print("Invalid input! Please enter numbers(0-1000), spaces, and commas only.")
+                messagebox.showinfo("Alert", "Invalid input! Please enter numbers(0-1000), spaces, and commas only.")
 
         def on_item_click(event):
             selected_index = mylist.curselection()
