@@ -11,6 +11,7 @@ from datetime import datetime
 import controller
 import re
 from tkinter import messagebox
+import threading
 from shared.custom_exceptions import ResultsNotAvailableError
 
 primaryBgColor = '#171717'
@@ -35,7 +36,7 @@ Notes:
 
 Description:
 
-Metristics helps in calculating descriptive statistics.
+Metricstics helps in calculating descriptive statistics.
 
 The purpose of descriptive statistics is to quantitatively describe a collection of data by measures of central tendency, measures of frequency, and measures of variability.
 
@@ -266,7 +267,7 @@ class MetricsticsGUI:
             )
         set_dark_theme()
         # set title
-        self.root.title("METRISTICS")
+        self.root.title("METRICSTICS")
         # set window size to full screen
         self.root.state('zoomed')
         
@@ -281,7 +282,7 @@ class MetricsticsGUI:
         header_frame.pack_propagate(False)
 
         # Add a title label on the left side of the header
-        title_label = tk.Label(header_frame, text="METRISTICS", font=("Helvetica", 16), bg=primaryBgColor)
+        title_label = tk.Label(header_frame, text="METRICSTICS", font=("Helvetica", 16), bg=primaryBgColor)
         title_label.pack(side="left", padx=10)
 
         # Add a close button on the right side of the header
@@ -367,8 +368,9 @@ class MetricsticsGUI:
                 self.controller.clear_data()
 
 
-        def get_user_input(button_title):
-            clear_results()
+        def get_user_input(button_title, clear=True):
+            if clear:
+                clear_results()
             # Common function to get user input based on the button clicked
             if button_title == "Keyboard":
                 print("Getting keyboard input")
@@ -407,16 +409,14 @@ class MetricsticsGUI:
                 keyboard_button.deselect()
                 file_button.deselect()
                 auto_button.select()
-                selected_input_text.config(text="Auto generated input")
                 # Your code to generate random positive numbers (between 300 and 1000) here
                 random_numbers = [random.randint(1, 1000) for _ in range(random.randint(1000, 10000))]
                 sorted_numbers = sorted(random_numbers)
+                selected_input_text.config(text="Auto generated input")
                 selected_input_subtext.config(text=f"Generated {len(sorted_numbers)} random numbers")
-                print("Generated numbers:", sorted_numbers)
 
                 # Set the text area input to the generated and sorted random numbers
-                self.text_input.delete(1.0, tk.END)  # Clear existing content
-                self.text_input.insert(tk.END, ", ".join(map(str, sorted_numbers)))
+                add_text_threaded(", ".join(map(str, sorted_numbers)))
 
 
         def get_name():
@@ -498,7 +498,7 @@ class MetricsticsGUI:
             # Your code to handle the text area change goes here
             print("Text area content changed")
             # switch to custom user input
-            get_user_input('Keyboard')
+            get_user_input('Keyboard', False)
 
         
         def generate_action():
@@ -584,8 +584,7 @@ class MetricsticsGUI:
                                     numbers = [int(num) for num in content.split(",")]
 
                                     # Set the text area input to the numbers from the file
-                                    self.text_input.delete(1.0, tk.END)  # Clear existing content
-                                    self.text_input.insert(tk.END, ", ".join(map(str, numbers)))
+                                    add_text_threaded(", ".join(map(str, numbers)))
                                     keyboard_button.select()
                                     selected_input_text.config(text="Session loaded")
                                     selected_input_subtext.config(text=f"Name: {name} | Date: {format_timestamp(timestamp)} ")
@@ -614,6 +613,16 @@ class MetricsticsGUI:
                 formatted_date = date_object.strftime("%d-%b-%Y %H:%M:%S")
                 return formatted_date
             return ""
+        
+        def add_text_to_widget(text):
+            self.text_input.config(state=tk.NORMAL)
+            self.text_input.insert(tk.END, text)
+
+        def add_text_threaded(text):
+            self.text_input.delete(1.0, tk.END)
+            # Function to add text in a separate thread
+            thread = threading.Thread(target=add_text_to_widget, args=(text,))
+            thread.start()
 
 
         #---------------------------- column 1 start -----------------------------------------
